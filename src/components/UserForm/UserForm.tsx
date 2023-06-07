@@ -37,6 +37,8 @@ const UserForm: React.FC<Props> = ({onSubmit}) => {
             id: nanoid(),
             ...userInfo,
         });
+
+        setUserInfo({name: '', email: '',  status: false, role: 'user'});
     };
 
     const getSelectOption = () => {
@@ -46,12 +48,13 @@ const UserForm: React.FC<Props> = ({onSubmit}) => {
     }
 
     return (
-        <form className="row gy-2 gx-3" onSubmit={onFormSubmit}>
-            <h4>User Form</h4>
+        <form className="row border border-primary rounded border-2 pb-3 me-2" onSubmit={onFormSubmit}>
+            <h4 className="bg-primary text-light rounded-top p-1">User Form</h4>
 
             <div className="form-group">
-                <label htmlFor="name">Name</label>
+                <label htmlFor="name" className="mt-2 mb-2 fw-bold">Name:</label>
                 <input className="form-control"
+                    required
                     type="text"
                     name="name"
                     id="name"
@@ -61,8 +64,9 @@ const UserForm: React.FC<Props> = ({onSubmit}) => {
             </div>
 
             <div className="form-group">
-                <label htmlFor="email">E-mail</label>
+                <label htmlFor="email" className="mt-2 mb-2 fw-bold">E-mail:</label>
                 <input className="form-control"
+                    required
                     type="text"
                     name="email"
                     id="email"
@@ -71,33 +75,37 @@ const UserForm: React.FC<Props> = ({onSubmit}) => {
                 />
             </div>
 
-            <div className="form-group col-auto">
-                <label htmlFor="status">Active user:</label>
-                <input
-                    type="checkbox"
-                    checked={userInfo.status}
-                    name="status"
-                    id="status"
-                    className="status"
-                    onChange={(e) => setUserInfo((prevState) =>
-                        ({...prevState, status: e.target.checked}))}
-                />
-                <label htmlFor="status">Yes</label>
-            </div>
-
-            <div className="form-group col-auto">
+            <div className="form-group">
+                <label htmlFor="role" className="mt-2 mb-2 fw-bold">Select role:</label>
                     <select value={userInfo.role}
+                            required
                             onChange={infoChange}
                             name="role"
                             id="role"
-                            className="role">
-                        <option value="" disabled defaultValue="">Select role:</option>
+                            className="form-control">
+                        <option value="" disabled defaultValue="">Select role</option>
                         {getSelectOption()}
                     </select>
             </div>
 
+            <div className="row justify-content-between align-items-center mt-4">
+                <div className="form-group col-auto">
+                    <label htmlFor="status" className="me-2 fw-bold">Active:</label>
+                    <input
+                        type="checkbox"
+                        checked={userInfo.status}
+                        name="status"
+                        id="status"
+                        className="status"
+                        onChange={(e) => setUserInfo((prevState) =>
+                            ({...prevState, status: e.target.checked}))}
+                    />
+                    <label htmlFor="status" className="ms-2 fw-bold">Yes</label>
+                </div>
 
-            <button type="submit" className="btn btn-primary col-auto">Create</button>
+                <button type="submit" className="btn btn-primary col-auto">Create</button>
+            </div>
+
         </form>
     );
 };

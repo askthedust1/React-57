@@ -20,14 +20,14 @@ const App = () => {
   console.log(users);
 
   return (
-    <div className="App">
+    <div className="App mt-3">
       <main className="container-fluid">
         <div className="row justify-content-center">
           <div className="col-4">
             <UserForm onSubmit={addUser} />
           </div>
 
-          <div className="col-6">
+          <div className="col-4">
             <Users items={users} />
           </div>
 

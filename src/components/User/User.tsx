@@ -14,7 +14,7 @@ const User: React.FC<Props> = ({user}) => {
     }
 
     return (
-            <div className="card">
+            <div className="card mb-3 border border-primary border-2">
                 <div className="card-body">
                     <p>Name: {user.name}</p>
                     <p>E-mail: {user.email}</p>
