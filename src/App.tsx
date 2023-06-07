@@ -1,26 +1,38 @@
 import React, {useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { nanoid } from 'nanoid';
-import './App.css';
 import UserForm from "./components/UserForm/UserForm";
 import {IUserInfo} from "./types";
+import './App.css';
+import Users from "./components/User/Users";
+
 
 
 const App = () => {
   const [users, setUsers] = useState<IUserInfo[]>([
-    {id: '1', name: 'Victoria', email: '123@gmail.com', status: true, role: 'editor'},
-    {id: '2', name: 'Misty', email: '123@gmail.com', status: true, role: 'editor'},
+    {id: '1', name: 'Han Solo', email: 'Han_Solo@gmail.com', status: true, role: 'editor'},
+    {id: '2', name: 'Grogu', email: 'Grogu@gmail.com', status: false, role: 'administrator'},
   ]);
 
-  const addUser = (newDish: IUserInfo) => {
-    setUsers(prevState => [...prevState, newDish]);
+  const addUser = (newUser: IUserInfo) => {
+    setUsers(prevState => [...prevState, newUser]);
   };
 
   console.log(users);
 
   return (
     <div className="App">
-      <UserForm onSubmit={addUser} />
+      <main className="container-fluid">
+        <div className="row justify-content-center">
+          <div className="col-4">
+            <UserForm onSubmit={addUser} />
+          </div>
+
+          <div className="col-6">
+            <Users items={users} />
+          </div>
+
+        </div>
+      </main>
     </div>
   );
 }
