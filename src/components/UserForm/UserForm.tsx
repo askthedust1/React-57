@@ -82,7 +82,7 @@ const UserForm: React.FC<Props> = ({onSubmit}) => {
                             onChange={infoChange}
                             name="role"
                             id="role"
-                            className="form-control">
+                            className="form-select">
                         <option value="" disabled defaultValue="">Select role</option>
                         {getSelectOption()}
                     </select>
