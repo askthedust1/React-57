@@ -17,8 +17,6 @@ const App = () => {
     setUsers(prevState => [...prevState, newUser]);
   };
 
-  console.log(users);
-
   return (
     <div className="App mt-3">
       <main className="container-fluid">
